@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import the styles
 
 const Write = () => {
   const [title, setTitle] = useState("");
@@ -28,12 +30,10 @@ const Write = () => {
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Content</label>
-          <textarea
+          <ReactQuill
             value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="w-full p-2 border rounded"
-            rows={10}
-            required
+            theme="snow"
+            onChange={setContent}
           />
         </div>
         <div>
