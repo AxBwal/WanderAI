@@ -1,8 +1,11 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import the styles
+import { useDispatch } from "react-redux";
+import { addPost } from "../features/blog/blogSlice";
 
 const Write = () => {
+  const dispatch=useDispatch()
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
@@ -11,7 +14,13 @@ const Write = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ title, content, author, tags });
+    dispatch(addPost({ title, content, author, tags })); 
     // TODO: Save the blog post (we'll do this in the next step)
+
+    setTitle("");
+    setContent("");
+    setAuthor("");
+    setTags("");
   };
 
   return (
