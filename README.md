@@ -82,3 +82,24 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+
+AI-Powered Travel Planner (WanderAI)
+Problem:
+Planning a trip takes too much time – finding flights, hotels, places to visit, and budgets is complicated.
+
+Solution:
+An AI travel planner that creates personalized itineraries based on user preferences, budget, and travel style.
+
+🔹 Tech Stack:
+
+Frontend: Next.js (SEO-friendly)
+Backend: Node.js + Express
+Database: PostgreSQL
+AI Engine: GPT (for recommendations) + Google Maps API
+Extras: Flight & hotel API integration
+Unique Features:
+✅ AI-generated trip itineraries
+✅ Personalized hotel & flight recommendations
+✅ Budget-friendly planning with cost estimation
+✅ Offline downloadable guides

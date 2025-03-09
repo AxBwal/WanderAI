@@ -1,9 +1,5 @@
+import Home from "../pages/Home";
 
-
-export default function Home() {
-  return (
-    <div>
-      hi
-      </div>
-  );
+export default function Page() {
+  return <Home />;
 }
