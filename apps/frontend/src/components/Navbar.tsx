@@ -1,14 +1,33 @@
-import React from "react";
+"use client"
+
+import React, { useState, useEffect } from "react";
 
 const Navbar: React.FC = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="flex items-center justify-between px-6 py-4 shadow-md bg-white fixed w-full top-0 z-10">
-      <div className="text-2xl font-bold cursor-pointer text-blue-600">WanderAI</div>
-      <ul className="flex space-x-6">
-        <li className="text-gray-700 hover:text-blue-500 cursor-pointer">Home</li>
-        <li className="text-gray-700 hover:text-blue-500 cursor-pointer">Destinations</li>
-        <li className="text-gray-700 hover:text-blue-500 cursor-pointer">Contact</li>
-      </ul>
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-blue-600">Wander AI</h1>
+        <ul className="flex space-x-6 text-gray-700">
+          <li className="hover:text-blue-600 cursor-pointer">Home</li>
+          <li className="hover:text-blue-600 cursor-pointer">Destinations</li>
+          <li className="hover:text-blue-600 cursor-pointer">About</li>
+          <li className="hover:text-blue-600 cursor-pointer">Contact</li>
+        </ul>
+      </div>
     </nav>
   );
 };
