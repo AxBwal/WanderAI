@@ -6,6 +6,8 @@ import RecommendedDestinations from "@/components/RecommendedDestinations";
 import Footer from "@/components/Footer";
 import TravelPackages from "@/components/TravelPackages";
 import Testimonials from "@/components/Testimonials";
+import Newsletter from "@/components/Newsletter";
+import ExploreCategories from "@/components/ExploreCategories";
 
 const Home: React.FC = () => {
   return (
@@ -14,7 +16,9 @@ const Home: React.FC = () => {
       <HeroSection />
       <RecommendedDestinations />
       <TravelPackages />
+      <ExploreCategories/>
       <Testimonials/>
+      <Newsletter/>
       <section className="mt-10 flex justify-center">
         <ItineraryForm />
       </section>
