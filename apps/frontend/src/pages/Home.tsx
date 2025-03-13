@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       <ExploreCategories/>
       <Testimonials/>
       <Newsletter/>
-      <section className="mt-10 flex justify-center">
+      <section className="mt-12 mb-5 flex justify-center">
         <ItineraryForm />
       </section>
       <Footer />
