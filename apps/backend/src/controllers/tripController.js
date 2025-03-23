@@ -25,3 +25,39 @@ export const createTrip = async (req, res) => {
     res.status(500).json({ error: "Error creating trip" });
   }
 };
+
+export const getAllTrips = async (req, res) => {
+  try {
+    const userId = req.user.id; // Get user ID from token
+    const trips = await prisma.trip.findMany({
+      where: { userId },
+    });
+
+    res.status(200).json({ trips });
+  } catch (error) {
+    console.error("Error fetching trips:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+export const getTripById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    const trip = await prisma.trip.findUnique({
+      where: { id: Number(id), userId },
+    });
+
+    if (!trip) {
+      return res.status(404).json({ error: "Trip not found" });
+    }
+
+    res.status(200).json({ trip });
+  } catch (error) {
+    console.error("Error fetching trip:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
