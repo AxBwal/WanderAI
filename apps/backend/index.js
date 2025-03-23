@@ -1,37 +1,24 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcrypt");
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import tripRoutes from "./src/routes/tripRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
+import { prisma } from "./prisma/prismaClient.js"; 
+
+dotenv.config();
 
 const app = express();
-const prisma = new PrismaClient();
 
-app.use(express.json());
+// Middleware
 app.use(cors());
+app.use(express.json());
 
-// Register a new user
-app.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  try {
-    const user = await prisma.user.create({
-      data: { name, email, password: hashedPassword },
-    });
-    res.json({ message: "User created successfully!", user });
-  } catch (error) {
-    res.status(400).json({ error: "Email already exists" });
-  }
-});
-
-// Get all users
-app.get("/users", async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
-});
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/trips", tripRoutes);
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 Backend running on http://localhost:${PORT}`);
 });
