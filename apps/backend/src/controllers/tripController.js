@@ -97,3 +97,22 @@ export const updateTrip = async (req, res) => {
 };
 
 
+
+export const deleteTrip =async(req,res)=>{
+  try {
+    const {id}=req.params;
+    const userId=req.user.id;
+
+    const deletedTrip=await prisma.trip.delete({
+      where:{id:id,userId}
+    })
+
+    if (deletedTrip.count === 0) {
+      return res.status(404).json({ error: "Trip not found or unauthorized" });
+    }
+
+    res.status(200).json({ message: "Trip deleted" });
+  } catch (error) {
+    
+  }
+}
